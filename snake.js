@@ -11,6 +11,9 @@ $(document).ready(function(){
 	// Snake cells width size
 	var cellWidth = 10;
 	
+	// Boolean for when snake can take user input
+	var canMove = true;
+	
 	// Direction of the snake
 	var direction;
 	
@@ -48,6 +51,7 @@ $(document).ready(function(){
 	
 	// Call init()
 	init();
+	
 	
 	/*  Create the snake */
 	
@@ -92,7 +96,8 @@ $(document).ready(function(){
 	// Paint the snake
 	function paint()
 	{
-	    
+		// Set boolean to true
+	    canMove = true;
 	    
 	    // To avoid the snake trail you need to paint the BG on every frame
 		// Paint the canvas now
@@ -110,7 +115,7 @@ $(document).ready(function(){
 		var ny = snake_array[0].y;
 		
 		// Increment it to get the new head position
-		// So add proper direction based movement now
+		// So add proper direction based movement.
 		if(direction == "right") 
 		{
 		    nx++;
@@ -163,8 +168,6 @@ $(document).ready(function(){
 		    tail.x = nx;
 		    tail.y = ny;
 		}
-		
-		
 		
 		
 		
@@ -228,29 +231,36 @@ $(document).ready(function(){
 	    // Get the key
 		var key = e.which;
 		
-		// If key 37 is down and direction is not right
-		if(key == "37" && direction != "right") 
+		// If canMove is true
+		if(canMove)
 		{
-		    // Set direction to left
-		    direction = "left";
-		}
-		// If key 38 is down and direction is not down
-		else if(key == "38" && direction != "down") 
-		{
-		    // Set direction to up
-		    direction = "up";
-		}
-		// If key 39 is down and direction is not left
-		else if(key == "39" && direction != "left") 
-		{
-		    // Set direction to right
-		    direction = "right";
-		}
-		// If key 40 is down and direction is not up
-		else if(key == "40" && direction != "up") 
-		{
-		    // Set direction to down
-		    direction = "down";
+			// If key 37 is down and direction is not right
+			if(key == "37" && direction != "right") 
+			{
+			    // Set direction to left
+			    direction = "left";
+			}
+			// If key 38 is down and direction is not down
+			else if(key == "38" && direction != "down") 
+			{
+			    // Set direction to up
+			    direction = "up";
+			}
+			// If key 39 is down and direction is not left
+			else if(key == "39" && direction != "left") 
+			{
+			    // Set direction to right
+			    direction = "right";
+			}
+			// If key 40 is down and direction is not up
+			else if(key == "40" && direction != "up") 
+			{
+			    // Set direction to down
+			    direction = "down";
+			}
+		
+			// Set boolean to false
+			canMove = false;
 		}
 	})
 	
